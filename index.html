@@ -102,6 +102,24 @@ let arr_symbols_heavy_eng = "bpwrgzxcvbnm";
 var RegExpStrRight = ""; 
 var task_number = 0; 
 var text_for_search = "";
+	
+	
+alert( 	'cookie fiddle_global_key = ' + cookie.get('fiddle_global_key') );
+	
+let key = cookie.get('fiddle_global_key');	
+    if (key.length<2) 
+	{ 
+	  cookie.set({
+	   'fiddle_global_key': fiddle_global_key+String( getRandomInt(2021,9999) ),
+		}, 
+		   {
+			expires: 7
+		    }
+	    )
+	}
+
+	
+	
 let key = fiddle_global_key + task_number;
 let pick_index_animal = random_int_fiddle(0, arr_animals.length-1,key);
 	let animal = arr_animals[pick_index_animal];
