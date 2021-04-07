@@ -101,7 +101,7 @@ var task_number = 0;
 var text_for_search = "";
 	
 	
-alert( 	'cookie fiddle_global_key = ' + cookie.get('fiddle_global_key') );
+//alert( 	'cookie fiddle_global_key = ' + cookie.get('fiddle_global_key') );
 
 let key = cookie.get('fiddle_global_key');	
     if (key == null) 
@@ -111,7 +111,7 @@ let key = cookie.get('fiddle_global_key');
 	  		 'fiddle_global_key': key,
 		}, 
 		   {
-			expires: 7
+			expires: 14
 		    }
 	    )
 	}
@@ -236,7 +236,7 @@ var text = text_for_search;
       return '<span class="highlight">' + part + '</span>'
     }))
 
-alert( RegExpStrRight );
+//alert( RegExpStrRight );
 
 code = 'var regexRight = new RegExp( ' + RegExpStrRight + ')';
 eval(code);	
@@ -245,7 +245,12 @@ eval(code);
       return '<span class="highlight">' + part + '</span>'
     }))
 	//alert ( $("#id_text_for_search").html ); 	alert ( $("#id_text_for_search_right").html ); 
-	if ( $("#id_text_for_search").html() == $("#id_text_for_search_right").html() ) { alert( "верно!" ) } else { alert( "неверно!" ); }
+	if ( $("#id_text_for_search").html() == $("#id_text_for_search_right").html() ) { 
+		
+		alert( "верно!" ) 
+	
+	
+	} else { alert( "неверно!" ); }
 	
 }
 
@@ -283,7 +288,7 @@ var text = $("#textareal").html();
 
 
 
-alert( RegExpStrRight );
+//alert( RegExpStrRight );
 
 code = 'var regexRight = new RegExp( ' + RegExpStrRight + ')';
 eval(code);	
