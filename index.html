@@ -106,8 +106,9 @@ alert( 	'cookie fiddle_global_key = ' + cookie.get('fiddle_global_key') );
 let key = cookie.get('fiddle_global_key');	
     if (key == null) 
 	{ 
+	  key = fiddle_global_key+String( getRandomInt(2021,9999) );
 	  cookie.set({
-	   'fiddle_global_key': fiddle_global_key+String( getRandomInt(2021,9999) ),
+	  		 'fiddle_global_key': key,
 		}, 
 		   {
 			expires: 7
