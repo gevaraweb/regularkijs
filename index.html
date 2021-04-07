@@ -45,9 +45,10 @@ body {
 	 <input type="button" value="check" onclick="check()"/ class="button24"> 
 	 </div>
 
+	 <!--
 	<div id="question" style="max-width: 1000px; text-align: center; font: 17px/26px roboto; padding: 5px;"></div> 
 	<br>
-
+	-->
 
 
 	<div id="id_text_for_search" style="max-width: 1000px; text-align: justify; font: 17px/26px roboto; padding: 5px;"></div>
@@ -421,7 +422,7 @@ function activateUI( task_number ) {
 
 
 		// забиваем тестовое поле
-		$("#question").html( "<p>Напишите регулярное выражение, с помощью которого можно: <p>" + questions[task_number]);
+		//$("#question").html( "<p>Напишите регулярное выражение, с помощью которого можно: <p>" + questions[task_number]);
 		//$("#question").html( "<p>Напишите регулярное выражение, с помощью которого можно: <p>" + question);
 		$("#id_text_for_search").html( text_for_search );
 			
