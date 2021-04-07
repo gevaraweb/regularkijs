@@ -78,13 +78,13 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function random_int_fiddle( min, max, key ) {
+function random_int_fiddle( min, max, _key ) {
 	
 	let bias = 0; 
-	for (var i = 0; i < key.length; i++){ 
-		bias += key.charCodeAt(i);
+	for (var i = 0; i < _key.length; i++){ 
+		bias += _key.charCodeAt(i);
 	}
-	bias +=  getRandomInt( 0, arr_animals.length-1 ); // testing
+	//bias +=  getRandomInt( 0, arr_animals.length-1 ); // testing
 	return min + ( bias % ( max - min + 1 ) );
 }
 
