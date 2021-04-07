@@ -1,0 +1,441 @@
+<html>
+<head>
+<link href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.min.css" rel="stylesheet"/>
+<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<style>
+.highlight {
+  color: red;
+}
+body {
+	padding: 5px;
+}
+.button24 {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .5em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
+  font-size: 150%;
+} 
+.button24:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+.button24:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
+</style>
+<link href="http://www.vokrugsveta.ru/local/templates/vokrugsveta2016/css/main.css?159132589434501" type="text/css"  rel="stylesheet" />
+<body>
+
+
+<div id="tabs">
+
+</div>
+
+
+
+ <div class="detail-text">
+ 
+	 <div style="max-width: 1000px; text-align: center; font: 17px/26px roboto; padding: 5px;">
+	 
+	 <input id="term" name="term" autocomplete="on" value="" class="button24" placeholder="/вил/gu">
+	 <input type="button" value="check" onclick="check()"/ class="button24"> 
+	 </div>
+
+	<div id="question" style="max-width: 1000px; text-align: center; font: 17px/26px roboto; padding: 5px;"></div> 
+	<br>
+
+
+
+	<div id="id_text_for_search" style="max-width: 1000px; text-align: justify; font: 17px/26px roboto; padding: 5px;"></div>
+	<div id="id_text_for_search_right" style="visibility: hidden; max-width: 1000px; text-align: justify; font: 17px/26px roboto; padding: 5px;"></div>
+
+</div>
+</body>
+
+<script>
+
+
+
+
+
+const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+var fiddle_global_key = "fiddle";
+var asbuka = "abcdefghijklmnopqrstuvwxyz";
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function random_int_fiddle( min, max, key ) {
+	
+	let bias = 0; 
+	for (var i = 0; i < key.length; i++){ 
+		bias += key.charCodeAt(i);
+	}
+	bias +=  getRandomInt( 0, arr_animals.length-1 ); // testing
+	return min + ( bias % ( max - min + 1 ) );
+}
+
+let arr_animals = ["дикобраз","леопард","лемур","буйвол","тапир","варан","орангутан","крот","бандикут","вомбат","слон","страус","бегемот","крокодил","жираф","гепард","дракон","гиппопотам","павлин","утконос","бизон"];
+let arr_symbols_light = "абгдезиучвкг";
+let arr_symbols_heavy = "япктосыюшухх";
+let arr_symbols_space = "аокиесмяхьтуйвю";
+
+let arr_symbols_light_eng = "aioeakltyuio";
+let arr_symbols_heavy_eng = "bpwrgzxcvbnm";
+
+var RegExpStrRight = ""; 
+var task_number = 0; 
+var text_for_search = "";
+let key = fiddle_global_key + task_number;
+let pick_index_animal = random_int_fiddle(0, arr_animals.length-1,key);
+	let animal = arr_animals[pick_index_animal];
+let pick_index_symbol = random_int_fiddle(0, arr_symbols_light.length-1,key);
+let symbol_1 = arr_symbols_light[ pick_index_symbol ];
+let symbol_2 = arr_symbols_heavy[ pick_index_symbol ];
+
+let symbol_1_eng = arr_symbols_light_eng[ pick_index_symbol ];
+let symbol_2_eng = arr_symbols_heavy_eng[ pick_index_symbol ];
+
+let pick_index_number_from = String( random_int_fiddle(0,5,key) );
+let pick_index_number_to = String( random_int_fiddle(6,9,key) );
+
+let pick_index_symbols_space = arr_symbols_space[ random_int_fiddle(0, arr_symbols_space.length-1,key) ];
+
+
+let arr_animals_sound =      ["мяу",  "ква",   "му",    "бэ",  "уху",  "эж",  "пи",  "иа",  "ыр", "эш",  "ыз",  "кар"];
+let arr_animals_sound_self = ["кот","лягушка","корова","баран","сова", "пчела","мышь","осел","волк","змея","комар","ворона"];
+let pick_index_animals_sound = random_int_fiddle(0, arr_animals_sound.length-1,key);
+				let Char = arr_animals_sound[pick_index_animals_sound].slice(-1); 
+				let pick_sound = arr_animals_sound[pick_index_animals_sound] + " " + 
+					arr_animals_sound[pick_index_animals_sound] + Char + " " + 
+					arr_animals_sound[pick_index_animals_sound] + Char + Char + " " + 
+					arr_animals_sound[pick_index_animals_sound] + Char + Char + Char + " " + 
+					arr_animals_sound[pick_index_animals_sound] + Char + Char + Char + Char;	
+		let sub = arr_animals_sound[pick_index_animals_sound].slice(0, -1);
+				let pick_sound2 = arr_animals_sound[pick_index_animals_sound].substring(1) + " " + 
+					arr_animals_sound[pick_index_animals_sound].substring(1) + Char + " " + 
+					arr_animals_sound[pick_index_animals_sound].substring(1) + Char + Char + " " + 
+					arr_animals_sound[pick_index_animals_sound].substring(1) + Char + Char + Char + " " + 
+					arr_animals_sound[pick_index_animals_sound].substring(1) + Char + Char + Char + Char;
+		let  len = arr_animals_sound[pick_index_animals_sound].length;
+		let sym1 = arr_animals_sound[pick_index_animals_sound][len-2];
+		let sym2 = arr_animals_sound[pick_index_animals_sound][len-1];		
+
+var questions=[];
+
+questions.push( "найти одно (первое) вхождение слова <b>" + animal +"</b>" );
+questions.push( "найти все вхождения слова <b>" + animal +"</b>" );
+questions.push( "найти все вхождения слова <b>" + animal +"</b> без учета регистра" );
+questions.push( "найти все вхождения слов <b>тигр</b>, <b>" + animal +"</b>" );
+questions.push( "найти все вхождения слов <b>тигр</b>, <b>" + animal +"</b>, <b>дрова</b> без учета регистра" );
+questions.push( "найти все вхождения символов <b>" + symbol_1 +"</b> и <b>" + symbol_2 +"</b>");
+questions.push( "найти все вхождения символов от <b>" + symbol_1 +"</b> до <b>" + symbol_2 +"</b>");
+questions.push( "найти все вхождения цифр от <b>" + pick_index_number_from +"</b> до <b>" + pick_index_number_to +"</b>");
+questions.push( "найти все вхождения символа <b>" + pick_index_symbols_space +"</b> с пробелом (вида " + pick_index_symbols_space + "_)" );
+questions.push( "найти все вхождения словосочетания <b>" + symbol_1_eng + symbol_2_eng +"</b> в начале слова" );
+questions.push( "найти все вхождения словосочетания <b>" + symbol_1_eng + symbol_2_eng +"</b> в конце слова" );
+questions.push( "найти все вхождения слов типа <b>" + pick_sound +"</b> и т.д." );
+questions.push( "найти все вхождения слов типа <b>" + sub + " " + pick_sound +"</b> и т.д." );
+questions.push( "найти все вхождения слов типа <b>" + sub + " " + pick_sound + " " + pick_sound2 + "</b> и т.д." );
+
+
+questions.push( "найти все слова, начинающиеся на <b>" + symbol_1_eng + "</b> и заканчивающиеся на <b>" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "" );
+
+	let content_tabs="";
+	content_tabs+="<ul>\n";
+for ( let i=0; i<questions.length; i++ ) {
+
+	content_tabs+= "\t<li><a href=\"#tabs-" + i + "\">№" + String(i+1) + "</a></li>\n";
+	
+}
+	content_tabs+="</ul>\n";
+
+for ( let i=0; i<questions.length; i++ ) {
+
+	content_tabs+= "\t<div id=\"tabs-" + i + "\">" + "Напишите регулярное выражение, с помощью которого можно:<br>" + questions[i] + "</div>\n";
+	
+}	
+	
+	$("#tabs").html( content_tabs );
+
+
+/*
+var text = $("#"+TextAreaTaskId).val();
+var regex = new RegExp(/zver/g);
+text = text.replace(regex, animal);
+$("#"+TextAreaTaskId).val(text);
+var regex = new RegExp(/Zver/g);
+text = text.replace( regex, capitalize( animal ) );
+if ( task_number<5 ) text = "<p><b>" + capitalize( animal ) + "</b> (рассказ). " + text;
+$("#"+TextAreaTaskId).val(text);
+*/
+let eng_text = "";
+
+for ( let i=0; i<160; i++ ) {
+
+	eng_text += arr_symbols_light_eng[ i % 12 ] + arr_symbols_heavy_eng[ i % 12 ];
+	
+    for ( let ii=0; ii<getRandomInt(1, 7); ii++ ) {	
+				let Char = asbuka[ getRandomInt(0, 25) ];
+				eng_text += Char; 
+			}
+	eng_text += arr_symbols_light_eng[ (i+1) % 12 ] + arr_symbols_heavy_eng[ (i+1) % 12 ];			
+		eng_text += " ";	
+
+}
+//$("#Textarea_eng").val(eng_text);
+
+//$("#textareal").html( $("#"+TextAreaTaskId).val() );
+
+
+
+
+
+
+function check() {
+
+var RegExpStr = $("#term").val();
+let code = 'var regex = new RegExp( ' + RegExpStr + ')';
+eval(code);
+
+var text = text_for_search;
+
+    $("#id_text_for_search").html(text.replace(regex, function(part) {
+      return '<span class="highlight">' + part + '</span>'
+    }))
+
+alert( RegExpStrRight );
+
+code = 'var regexRight = new RegExp( ' + RegExpStrRight + ')';
+eval(code);	
+	
+    $("#id_text_for_search_right").html(text.replace(regexRight, function(part) {
+      return '<span class="highlight">' + part + '</span>'
+    }))
+	//alert ( $("#id_text_for_search").html ); 	alert ( $("#id_text_for_search_right").html ); 
+	if ( $("#id_text_for_search").html() == $("#id_text_for_search_right").html() ) { alert( "верно!" ) } else { alert( "неверно!" ); }
+	
+}
+
+
+
+function check2() {
+
+$("#textareal").html( $("#"+TextAreaTaskId).val() );
+
+var regex = new RegExp(/[крол]/g); //для поиска всех русских символов в строке.
+var regex = new RegExp(/кр/g); //для поиска всех русских символов в строке.
+var regex = new RegExp(/н(.*?)а/);
+
+var regex = new RegExp(/ви/i, 'g');
+var regex = new RegExp(/ви*?л/giu);
+var regex = new RegExp(/[ви]л/giu);
+//var regex = new RegExp(/vi*?l/giu);
+
+var RegExpStr = $("#term").val();
+//console.log( RegExpStr );
+
+let code = 'var regex = new RegExp( ' + RegExpStr + ')';
+eval(code);
+//var regex = new RegExp( RegExpStr );
+
+var text = $("#textareal").html();
+//console.log( text );
+
+//text = text.replace( regex, "DDDDDD" );
+//$("#textareal").html( text );
+
+    $("#textareal").html(text.replace(regex, function(part) {
+      return '<span class="highlight">' + part + '</span>'
+    }))
+
+
+
+alert( RegExpStrRight );
+
+code = 'var regexRight = new RegExp( ' + RegExpStrRight + ')';
+eval(code);	
+	
+    $("#textarealright").html(text.replace(regexRight, function(part) {
+      return '<span class="highlight">' + part + '</span>'
+    }))
+	//alert ( $("#textareal").html ); 	alert ( $("#textarealright").html ); 
+	if ( $("#textareal").html() == $("#textarealright").html() ) { alert( "верно!" ) } else { alert( "неверно!" ); }
+	
+}
+
+
+
+function generateText( mode ) {
+	var text = "";
+	switch(mode) {
+	  case "слон и тигр": 		
+			text = 'У людей бывают ручные zverы. Один индус пошёл с zverом в лес по дрова.</p>' +
+			'<p>Лес был глухой и дикий. Zver протаптывал хозяину дорогу и помогал валить деревья, а хозяин грузил их на zverа.</p>' +
+			'<p>Вдруг zver перестал слушаться хозяина, стал оглядываться, трясти ушами, а потом поднял голову и заревел.</p>' +
+			'<p>Хозяин тоже оглянулся, но ничего не заметил.</p>' +
+			'<p>Он стал сердиться на zverа и бить его по ушам веткой.</p>' +
+			'<p>А zver наклонил голову, чтоб поднять хозяина на спину. Хозяин подумал: &laquo;Сяду ему на шею &mdash; так мне ещё удобней будет им править&raquo;.</p>' +
+			'<p>Он уселся на zverе и стал веткой хлестать zverа по ушам. А zver пятился, топтался и вертел головой. Потом замер и насторожился.</p>' +
+			'<p>Хозяин поднял ветку, чтоб со всей силы ударить zverа, но вдруг из кустов выскочил огромный тигр. Он хотел напасть на zverа сзади и вскочить на спину.</p>' +
+			'<p>Но он попал лапами на дрова, дрова посыпались. Тигр хотел прыгнуть другой раз, но zver уже повернулся, схватил пастью тигра поперёк живота, сдавил как толстым канатом. Тигр раскрыл рот, высунул язык и мотал лапами.</p>' +
+			'<p>А zver уж поднял его вверх, потом шмякнул оземь и стал топтать ногами.</p>' +
+			'<p>А ноги у zverа &mdash; как столбы. Zver растоптал тигра в лепёшку. Когда хозяин опомнился от страха, он сказал:</p>' +
+			'<p>&mdash; Какой я дурак, что бил zverа! А он мне жизнь спас.</p>' +
+			'<p>Хозяин достал из сумки хлеб, что приготовил для себя, и весь отдал zverу.</p>';
+			regex = new RegExp(/zver/g);
+			text = text.replace(regex, animal);
+			regex = new RegExp(/Zver/g);
+			text = text.replace( regex, capitalize( animal ) );
+			text = "<p><b>" + capitalize( animal ) + "</b> (рассказ). " + text;
+			break;
+			
+	  case "цифры": 		
+			text = 'Пирамида Хеопса – это памятник, говорящий универсальным языком цифр. Она представляет собой многогранник, основание которого - квадрат со сторонами по 230,35 м., а грани – равнобедренные прямоугольные треугольники с углами при вершине – 90 градусов и по два угла внизу – 45 градусов.</span></p>'+
+			'<p>Площадь основания – 40000 кв. м. Высота пирамиды – 148,208 метров, длина боковой грани – 225 метров. Ее слагают 203 яруса каменных блоков, вес одного блока – 2,5 тонны. Всего блоков – около 2.5 млн.</p>'+
+			'<p>Великая пирамида – воплощение числа «пи»: сумма четырех сторон основания составляет 931,22 м. Если разделим это число на удвоенную высоту 148,208 x 2, то и получим значение «пи» - 3,1416.</p>'+
+			'<p>Кроме того, исследователи выяснили, что площадь основания пирамиды относится к площади всех четырех ее боковых граней в пропорции «золотого сечения».</p>'+
+			'<p>Высота пирамиды, умноженная на десять в девятой степени, равняется расстоянию от Земли до Солнца - 148 млн. км.</p>'+
+			'<p>Умножив площадь основания пирамиды на 96 в восьмой степени, получим цифру 19681000 квадратных миль, чему равняется площадь поверхности земного шара.</p>'+
+			'<p>Локоть – линейная мера древнего Египта, равная 25 дюймам, или 635,66 мм - одна десятимиллионная полярного радиуса Земли.</p>'+
+			'<p>Диагональ египетской пирамиды Хеопса дает абсолютно точное ее направление по меридиану, причем точность этого направления на теоретический Северный полюс достигает 4 минуты 30 секунд: это точнее, чем Парижская обсерватория.</p>'+
+			'<p>Сумма двух диагоналей пирамиды в дюймах, дает число лет, в течение которых северный полюс земли совершает один полный оборот.</p>'+
+			'<p>Умножив объем пирамиды на удельный вес камня, из которого она сделана, получим теоретический вес земного шара.</p>'+
+			'<p>Еще удивительнее другое соотношение: если сторону основания пирамиды разделить на точную длину года - 365,2422 суток, то получается как раз 10000000-я доля земной полуоси - с точностью, которой могли бы позавидовать современные астрономы...</p>'+
+			'<p>И это не все. В последнее время все чаще раскрывается множество удивительных математических, геодезических, физических и астрономических тайн, которыми были зашифрованы египетские пирамиды. </p><p>Может быть, универсальный язык цифр поможет нам шаг за шагом разгадать ход древних мыслей.</p>';
+			//regex = new RegExp(/zver/g);
+			//text = text.replace(regex, animal);
+			//regex = new RegExp(/Zver/g);
+			//text = text.replace( regex, capitalize( animal ) );
+			//text = "<p><b>" + capitalize( animal ) + "</b> (рассказ). " + text;
+			break;			
+
+	  case "eng text": 
+
+			for ( let i=0; i<180; i++ ) {
+
+				text += arr_symbols_light_eng[ i % 12 ] + arr_symbols_heavy_eng[ i % 12 ];
+				
+				for ( let ii=0; ii<getRandomInt(1, 7); ii++ ) {	
+							let Char = asbuka[ getRandomInt(0, 25) ];
+							text += Char; 
+						}
+				text += arr_symbols_light_eng[ (i+1) % 12 ] + arr_symbols_heavy_eng[ (i+1) % 12 ];			
+				text += " ";	
+
+			}
+			break;	
+
+
+	  case "мяу": 
+	  
+			text += "Как мы знаем, животные издают звуки: <p>";		
+			for ( let i=0; i<arr_animals_sound.length; i++ ) {
+				let Char = arr_animals_sound[i].slice(-1);  let sub = arr_animals_sound[i].slice(0, -1);
+				text += arr_animals_sound_self[i] + " (начинается на " + sub + "): ";
+				let text_sound = arr_animals_sound[i] + " " + 
+					arr_animals_sound[i] + Char + " " + 
+					arr_animals_sound[i] + Char + Char + " " + 
+					arr_animals_sound[i] + Char + Char + Char + " " + 
+					arr_animals_sound[i] + Char + Char + Char + Char + " " + 
+					arr_animals_sound[i] + Char + Char + Char + Char + Char;					
+				text += text_sound + "<p>";
+
+			}
+			break;
+			
+			
+	}
+	
+	
+	return text;
+			
+}
+
+
+
+
+//var hashTab = window.location.hash;
+var activeTab = 0;
+//if (hashTab.length > 0) {
+ // activeTab = $('a[href^="#tabs-"]').index($('a[href="' + hashTab + '"]'));
+//}
+
+console.log(activeTab)
+//hashLinks()
+
+$("#tabs").tabs({
+  active: activeTab,
+  activate: function(event, ui) {
+    let tabNumber = ui.newPanel.index();
+	console.log("tabNumber " + tabNumber)
+    //location.hash = ui.newTab.find("[href]").prop("hash");
+    console.log(location.hash);
+   // hashLinks();
+	
+	
+	task_number = tabNumber-1; 
+	
+	activateUI( task_number );
+
+  }
+})
+
+function activateUI( task_number ) {
+
+		switch(task_number) {
+		  case 0:  RegExpStrRight = "/" + animal + "/"; text_for_search = generateText( "слон и тигр" ); break;// 1 раз
+		  case 1:  RegExpStrRight = "/" + animal + "/g"; text_for_search = generateText( "слон и тигр" ); break;// все
+		  case 2:  RegExpStrRight = "/" + animal + "/gi"; text_for_search = generateText( "слон и тигр" ); break;// все без учета регистра
+		  case 3:  RegExpStrRight = "/(" +  animal + "|" + "тигр" + ")/g"; text_for_search = generateText( "слон и тигр" ); break;// слон тигр  
+		  case 4:  RegExpStrRight = "/(" +  animal + "|" + "тигр" + "|дрова)/gi"; text_for_search = generateText( "слон и тигр" ); break;// слон тигр дрова без учета регистра  
+		  case 5:  RegExpStrRight = "/[" +  symbol_1 + symbol_2 + "]/g"; text_for_search = generateText( "слон и тигр" ); break;// буквы а я  
+		  case 6:  RegExpStrRight = "/[" +  symbol_1 + "-" + symbol_2 + "]/g"; text_for_search = generateText( "слон и тигр" ); break;// буквы а я  
+		  case 7:  RegExpStrRight = "/[" +  pick_index_number_from + "-" + pick_index_number_to + "]/g"; text_for_search = generateText( "цифры" ); 
+		  break;// буквы а я    
+		  case 8:  RegExpStrRight = "/" + pick_index_symbols_space + "\\s" + "/g"; text_for_search = generateText( "слон и тигр" ); break; // буквы и пробел   
+		  case 9:  RegExpStrRight = "/\\b" +  symbol_1_eng + symbol_2_eng + "/g"; text_for_search = generateText( "eng text" );   break; // в начале   
+		  case 10:  RegExpStrRight = "/" +  symbol_1_eng + symbol_2_eng + "\\b/g"; text_for_search = generateText( "eng text" );  break; // в конце   
+		  case 11:  RegExpStrRight = "/" +  arr_animals_sound[pick_index_animals_sound] + "+/g"; text_for_search = generateText( "мяу" );  break; // 
+		  case 12:  RegExpStrRight = "/" +  arr_animals_sound[pick_index_animals_sound] + "*/g"; text_for_search = generateText( "мяу" );  break; // 
+		  case 13:  RegExpStrRight = "/" +  sym1 + "?" + sym2 + "+/g"; text_for_search = generateText( "мяу" );  break; // 
+          case 14:  RegExpStrRight = "/\\b" +  symbol_1_eng + "[a-z]+" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "\\b/g"; text_for_search = generateText( "eng text" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
+
+
+		  //  /м?яу+/g
+		  
+		  case 66:  RegExpStrRight = "/" + pick_index_symbols_space + "\s/g"; break;// слон и тигр
+		  case 76:   break;// 1 раз 
+		}
+
+
+		// забиваем тестовое поле
+		$("#question").html( "<p>Напишите регулярное выражение, с помощью которого можно: <p>" + questions[task_number]);
+		//$("#question").html( "<p>Напишите регулярное выражение, с помощью которого можно: <p>" + question);
+		$("#id_text_for_search").html( text_for_search );
+			
+			
+}
+
+activateUI(0);
+
+function hashLinks() {
+  $(".links a").prop("hash", location.hash)
+}
+$("button").click(function() {
+  location.reload(true)
+})
+
+
+</script>
