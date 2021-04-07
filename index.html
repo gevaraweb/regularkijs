@@ -104,7 +104,7 @@ var text_for_search = "";
 alert( 	'cookie fiddle_global_key = ' + cookie.get('fiddle_global_key') );
 
 let key = cookie.get('fiddle_global_key');	
-    if (key.length<2) 
+    if (key == null) 
 	{ 
 	  cookie.set({
 	   'fiddle_global_key': fiddle_global_key+String( getRandomInt(2021,9999) ),
