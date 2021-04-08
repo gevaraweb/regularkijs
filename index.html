@@ -461,7 +461,9 @@ function activateUI( task_number ) {
 		  case 11:  RegExpStrRight = "/" +  arr_animals_sound[pick_index_animals_sound] + "+/g"; text_for_search = generateText( "мяу" );  break; // 
 		  case 12:  RegExpStrRight = "/" +  arr_animals_sound[pick_index_animals_sound] + "*/g"; text_for_search = generateText( "мяу" );  break; // 
 		  case 13:  RegExpStrRight = "/" +  sym1 + "?" + sym2 + "+/g"; text_for_search = generateText( "мяу" );  break; // 
-          case 14:  RegExpStrRight = "/\\b" +  symbol_1_eng + "[a-z]+" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "\\b/g"; text_for_search = generateText( "eng text" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
+        	  case 14:  RegExpStrRight = "/\\b" +  symbol_1_eng + "[a-z]+" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "\\b/g"; text_for_search = generateText( "eng text" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
+        	  case 15:  RegExpStrRight = "/" +  "\d\d" + pick_symbol_divider + "\d\d" + "/g"; text_for_search = generateText( "колобок" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
+
 
 
 		  //  /м?яу+/g
