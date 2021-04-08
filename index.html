@@ -84,7 +84,7 @@ function random_int_fiddle( min, max, _key ) {
 	for (var i = 0; i < _key.length; i++){ 
 		bias += _key.charCodeAt(i);
 	}
-	//bias +=  getRandomInt( 0, arr_animals.length-1 ); // testing
+	bias +=  getRandomInt( 0, arr_animals.length-1 ); // testing
 	return min + ( bias % ( max - min + 1 ) );
 }
 
@@ -118,7 +118,7 @@ let key = cookie.get('fiddle_global_key');
 	}
 
 	
-let arr_divider = ":-/\.*^&";
+let arr_divider = ":-/\.*^&=";
 let pick_index_divider = random_int_fiddle(0, arr_divider.length-1,key);
 var pick_symbol_divider = arr_divider[ pick_index_divider ];
 	
