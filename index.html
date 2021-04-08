@@ -96,6 +96,7 @@ let arr_symbols_space = "аокиесмяхьтуйвю";
 let arr_symbols_light_eng = "aioeakltyuio";
 let arr_symbols_heavy_eng = "bpwrgzxcvbnm";
 
+
 var RegExpStrRight = ""; 
 var task_number = 0; 
 var text_for_search = "";
@@ -117,6 +118,9 @@ let key = cookie.get('fiddle_global_key');
 	}
 
 	
+let arr_divider = ":-/\.*^&";
+let pick_index_divider = random_int_fiddle(0, arr_divider.length-1,key);
+var pick_symbol_divider = arr_divider[ pick_index_divider ];
 	
 //let key = fiddle_global_key + task_number;
 let pick_index_animal = random_int_fiddle(0, arr_animals.length-1,key);
@@ -132,7 +136,6 @@ let pick_index_number_from = String( random_int_fiddle(0,5,key) );
 let pick_index_number_to = String( random_int_fiddle(6,9,key) );
 
 let pick_index_symbols_space = arr_symbols_space[ random_int_fiddle(0, arr_symbols_space.length-1,key) ];
-
 
 let arr_animals_sound =      ["мяу",  "ква",   "му",    "бэ",  "уху",  "эж",  "пи",  "иа",  "ыр", "эш",  "ыз",  "кар"];
 let arr_animals_sound_self = ["кот","лягушка","корова","баран","сова", "пчела","мышь","осел","волк","змея","комар","ворона"];
@@ -169,9 +172,8 @@ questions.push( "найти все вхождения словосочетани
 questions.push( "найти все вхождения слов типа <b>" + pick_sound +"</b> и т.д." );
 questions.push( "найти все вхождения слов типа <b>" + sub + " " + pick_sound +"</b> и т.д." );
 questions.push( "найти все вхождения слов типа <b>" + sub + " " + pick_sound + " " + pick_sound2 + "</b> и т.д." );
-
-
 questions.push( "найти все слова, начинающиеся на <b>" + symbol_1_eng + "</b> и заканчивающиеся на <b>" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "" );
+questions.push( "найти все временные показатели, начинающиеся на <b>" + "11"+pick_symbol_divider+"12, 11"+pick_symbol_divider+"23" + "</b> и т.д.";	
 
 	let content_tabs="";
 	content_tabs+="<ul>\n";
@@ -380,7 +382,30 @@ function generateText( mode ) {
 
 			}
 			break;
-			
+	
+	    case "колобок": 
+	  
+			text += "<p><strong>Восстановлена поминутная хронология событий, произошедших с Колобком.</strong></p>";
+			text += "<p>Жили-были старик со старухой.</p>";
+			text += "<p>10:23 Однажды старик попросил старуху испечь ему колобок.</p>";
+			text += "<p>10:25 Муки нет, но по коробу старуха поскребла, по сусеку помела, и замесила тесто.</p>";
+			text += "<p>10:58 Спёкся румяный колобок.</p>";
+			text += "<p>10:59 Положила его на окошко студиться.</p>";
+			text += "<p>11:12 Колобку вскоре надоело лежать на окошке, он спрыгнул и убежал. Покатился по дорожке в лес.</p>";
+			text += "<p>11:23 В лесу встретил сначала заяц, который сказал: &laquo;Колобок, колобок, я тебя съем!&raquo;.</p>";
+			text += "<p>11:24 Но колобок предложил &laquo;Не ешь меня, я тебе песенку спою&raquo;, &mdash; спел зайчику песенку о том, как его испекла старуха и как он убежал от бабушки и дедушки.</p>";
+			text += "<p>11:29 И дальше покатился по лесу.</p>";
+			text += "<p>11:35 По дороге он увидел волка. Он тоже хотел съесть колобка, но тот cпел песенку и убежал.</p>";
+			text += "<p>11:47 По дороге он увидел медведя. Он тоже хотел съесть колобка, но тот cпел песенку и убежал.</p>";
+			text += "<p>11:53 Но вот встретил колобок хитрую лисичку.</p>";
+			text += "<p>11:56 Ей он тоже спел песню и хотел уже покатиться дальше, но ловкая лиса его обманула.</p>";
+			text += "<p>12:01 Она похвалила колобка, пожаловалась, что плохо слышит, и попросила его сесть ей на мордочку и ещё раз спеть свою песню.</p>";
+			text += "<p>12:03 Колобок обрадовался, что его песня понравилась, и прыгнул к ней на мордочку.</p>";
+			text += "<p>12:04 Тут лиса и проглотила колобка.</p>";
+			let regex_divider = new RegExp(/:/g);
+			text = text.replace(regex_divider, pick_symbol_divider);
+			}
+			break;			
 			
 	}
 	
