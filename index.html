@@ -193,18 +193,6 @@ for ( let i=0; i<questions.length; i++ ) {
 	
 	$("#tabs").html( content_tabs );
 
-var arr_result = [];
-	
-let arr_result_cookie = cookie.get('arr_result_cookie');	
-    if (arr_result_cookie != null) 
-	{ 
-	  arr_result = JSON.parse(arr_result_cookie);
-	}
-for ( let i=0; i<arr_result.length; i++ ) {
-	console.log("arr_result " + arr_result[i] );
-	if ( arr_result[i]!=null ) document.getElementById( "ui-id-" + String(i+1) ).style.color = "#98FB98";
-}
-	
 
 /*
 var text = $("#"+TextAreaTaskId).val();
@@ -533,5 +521,18 @@ $("button").click(function() {
   location.reload(true)
 })
 
+	
+var arr_result = [];
+	
+let arr_result_cookie = cookie.get('arr_result_cookie');	
+    if (arr_result_cookie != null) 
+	{ 
+	  arr_result = JSON.parse(arr_result_cookie);
+	}
+for ( let i=0; i<arr_result.length; i++ ) {
+	console.log("arr_result " + arr_result[i] );
+	if ( arr_result[i]!=null ) document.getElementById( "ui-id-" + String(i+1) ).style.color = "#98FB98";
+}
+		
 	
 </script>
