@@ -43,8 +43,8 @@ body {
 	 <div style="max-width: 1000px; text-align: center; font: 17px/26px roboto; padding: 5px;">
 	 
 	 <input id="term" name="term" autocomplete="on" value="" class="button24" placeholder="/вил/gu">
-	 <input type="button" value="Проверить" onclick="check()"/ class="button24"> 
-	 <input type="button" value="Начать заново" onclick="restart_game()"/ class="button24"> 		 
+	 <input type="button" value="Проверить" onclick="check()" class="button24"> 
+	 <input type="button" value="Начать заново" onclick="restart_game()" class="button24"> 		 
 	 </div>
 
 	 <!--
@@ -540,5 +540,15 @@ for ( let i=0; i<arr_result.length; i++ ) {
 }
 
 activateUI(0);	
+
+function restart_game() {
+    var answer = confirm("Вы действительно хотите пройти тест заново?")
+    if (answer){
+         cookie.empty(); location.reload();
+    }
+    else {
+		
+    }
+}
 	
 </script>
