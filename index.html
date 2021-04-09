@@ -260,7 +260,9 @@ eval(code);
     }))
 	//alert ( $("#id_text_for_search").html ); 	alert ( $("#id_text_for_search_right").html ); 
 	if ( $("#id_text_for_search").html() == $("#id_text_for_search_right").html() ) { 
-		
+	
+		arr_result[task_number] = RegExpStr;
+		cookie.set( { 'arr_result_cookie': JSON.stringify(arr_result) }, {expires: 14} );
 		alert( "верно!" ) 
 	
 	
