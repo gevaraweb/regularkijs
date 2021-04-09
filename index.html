@@ -512,7 +512,7 @@ function activateUI( task_number ) {
 			
 }
 
-activateUI(0);
+
 
 function hashLinks() {
   $(".links a").prop("hash", location.hash)
@@ -534,6 +534,7 @@ for ( let i=0; i<arr_result.length; i++ ) {
 	//if ( arr_result[i]!=null ) document.getElementById( "ui-id-" + String(i+1) ).style.color = "#C71585";
 	if ( arr_result[i]!=null ) document.getElementById( "ui-id-" + String(i+1) ).style.setProperty("text-decoration", "line-through");
 }
-		
+
+activateUI(0);	
 	
 </script>
