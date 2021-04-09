@@ -176,6 +176,15 @@ questions.push( "найти все слова, начинающиеся на <b>
 questions.push( "найти все временные показатели вида <b>" + "09"+pick_symbol_divider+"23, 11"+pick_symbol_divider+"45, 23"+pick_symbol_divider+"01" + "</b> и т.д." );
 questions.push( "найти пути ко всем картинкам <b>" + "src=\"fish.png\", src=\"wrongname.gif\"</b> и т.д." );
 	
+var arr_result = [];
+	
+let arr_result_cookie = cookie.get('arr_result_cookie');	
+    if (key != null) 
+	{ 
+	  arr_result = JSON.parse(arr_result_cookie);
+	}
+	
+	
 	let content_tabs="";
 	content_tabs+="<ul>\n";
 for ( let i=0; i<questions.length; i++ ) {
