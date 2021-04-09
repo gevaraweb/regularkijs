@@ -531,7 +531,8 @@ let arr_result_cookie = cookie.get('arr_result_cookie');
 	}
 for ( let i=0; i<arr_result.length; i++ ) {
 	console.log("arr_result " + arr_result[i] );
-	if ( arr_result[i]!=null ) document.getElementById( "ui-id-" + String(i+1) ).style.color = "#C71585";
+	//if ( arr_result[i]!=null ) document.getElementById( "ui-id-" + String(i+1) ).style.color = "#C71585";
+	if ( arr_result[i]!=null ) document.getElementById( "ui-id-" + String(i+1) ).style.setProperty("text-decoration", "line-through");
 }
 		
 	
