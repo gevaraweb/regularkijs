@@ -173,7 +173,9 @@ questions.push( "найти все вхождения слов типа <b>" + p
 questions.push( "найти все вхождения слов типа <b>" + sub + " " + pick_sound +"</b> и т.д." );
 questions.push( "найти все вхождения слов типа <b>" + sub + " " + pick_sound + " " + pick_sound2 + "</b> и т.д." );
 questions.push( "найти все слова, начинающиеся на <b>" + symbol_1_eng + "</b> и заканчивающиеся на <b>" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "</b>" );
-questions.push( "найти все временные показатели вида <b>" + "11"+pick_symbol_divider+"12, 11"+pick_symbol_divider+"23" + "</b> и т.д." );	
+questions.push( "найти все временные показатели вида <b>" + "11"+pick_symbol_divider+"12, 11"+pick_symbol_divider+"23" + "</b> и т.д." );
+questions.push( "найти пути ко всем картинкам (из src) <b>" + "src=\"images/fish.png\"</b> и т.д." );
+	
 	let content_tabs="";
 	content_tabs+="<ul>\n";
 for ( let i=0; i<questions.length; i++ ) {
@@ -405,7 +407,33 @@ function generateText( mode ) {
 			text = text.replace(regex_divider, pick_symbol_divider);
 
 		break;			
+		
+	    case "html img": 
+	  
+			text += "‹html›<br>";
+			text += " ‹head›<br>";
+			text += "  ‹meta charset=\"utf-8\"›<br>";
+			text += "  ‹title›Текст с картинками‹/title›<br>";
+			text += " ‹/head›<br>";
+			text += " ‹body›<br>";
+			text += "  ‹p›‹a href=\"girl.html\"›";
+			text += "‹img src=\"girl.png\"";		
+			text += "  width=\"189\" height=\"255\" alt=\"girl\"›‹/a›<br>";
+			text += "  girl go...‹/p›<br>";
+
+			text += "‹img src=\"fish.png\"";		
+			text += "  width=\"189\" height=\"255\" alt=\"fish\"›‹/a›<br>";
+			text += "  fish go...‹/p›<br>";
+
+			text += "‹img src=\"rose.jpg\"";		
+			text += "  width=\"189\" height=\"255\" alt=\"rose\"›‹/a›<br>";
+			text += "  rose go...‹/p›<br>";
 			
+			text += " ‹/body›<br>";
+			text += "‹/html›";
+
+		break;	
+		
 	}
 	
 	
@@ -462,8 +490,7 @@ function activateUI( task_number ) {
 		  case 13:  RegExpStrRight = "/" +  sym1 + "?" + sym2 + "+/g"; text_for_search = generateText( "мяу" );  break; // 
         	  case 14:  RegExpStrRight = "/\\b" +  symbol_1_eng + "[a-z]+" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "\\b/g"; text_for_search = generateText( "eng text" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
         	  case 15:  RegExpStrRight = "/" +  "\\d\\d" + pick_symbol_divider + "\\d\\d" + "/g"; text_for_search = generateText( "колобок" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
-
-
+        	  case 16:  RegExpStrRight = "/" +  "src=\"[a-z.\s]+\"/gi"; text_for_search = generateText( "html img" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
 
 		  //  /м?яу+/g
 		  
