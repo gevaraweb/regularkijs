@@ -508,7 +508,9 @@ function activateUI( task_number ) {
 		//$("#question").html( "<p>Напишите регулярное выражение, с помощью которого можно: <p>" + questions[task_number]);
 		//$("#question").html( "<p>Напишите регулярное выражение, с помощью которого можно: <p>" + question);
 		$("#id_text_for_search").html( text_for_search );
-	if ( arr_result[task_number]!=null ) $("#term").val(arr_result[task_number]);		
+	if ( arr_result[task_number]!=null ) { 
+		$("#term").val(arr_result[task_number]); 
+	} else $("#term").val(""); 	
 			
 }
 
