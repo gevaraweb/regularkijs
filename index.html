@@ -183,7 +183,9 @@ let arr_result_cookie = cookie.get('arr_result_cookie');
 	{ 
 	  arr_result = JSON.parse(arr_result_cookie);
 	}
-	
+for ( let i=0; i<arr_result.length; i++ ) {
+	console.log("arr_result " + arr_result[i] );
+}
 	
 	let content_tabs="";
 	content_tabs+="<ul>\n";
