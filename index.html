@@ -172,7 +172,8 @@ questions.push( "найти все вхождения словосочетани
 questions.push( "найти все вхождения словосочетания <b>" + symbol_1_eng + symbol_2_eng +"</b> в конце слова" );
 questions.push( "найти все вхождения слов типа <b>" + pick_sound +"</b> и т.д." );
 questions.push( "найти все вхождения слов типа <b>" + sub + " " + pick_sound +"</b> и т.д." );
-questions.push( "найти все окончания глаголов вида <b>тся</b> и <b>ться</b>" );
+questions.push( "найти все слова в тексте" );	
+questions.push( "найти все глаголы, оканчивающиеся на <b>тся</b> и <b>ться</b>" );
 questions.push( "найти все слова, начинающиеся на <b>" + symbol_1_eng + "</b> и заканчивающиеся на <b>" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "</b>" );
 questions.push( "найти все временные показатели вида <b>" + "09"+pick_symbol_divider+"23, 11"+pick_symbol_divider+"45, 23"+pick_symbol_divider+"01" + "</b> и т.д." );
 questions.push( "найти пути ко всем картинкам <b>" + "src=\"fish.png\", src=\"wrongname.gif\"</b> и т.д." );
@@ -506,10 +507,11 @@ function activateUI( task_number ) {
 		  case 10:  RegExpStrRight = "/" +  symbol_1_eng + symbol_2_eng + "\\b/g"; text_for_search = generateText( "eng text" );  break; // в конце   
 		  case 11:  RegExpStrRight = "/" +  arr_animals_sound[pick_index_animals_sound] + "+/g"; text_for_search = generateText( "мяу" );  break; // 
 		  case 12:  RegExpStrRight = "/" +  arr_animals_sound[pick_index_animals_sound] + "*/g"; text_for_search = generateText( "мяу" );  break; // 
-		  case 13:  RegExpStrRight = "/ть?ся/g"; text_for_search = generateText( "ться" );  break; // 
-        	  case 14:  RegExpStrRight = "/\\b" +  symbol_1_eng + "[a-z]+" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "\\b/g"; text_for_search = generateText( "eng text" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
-        	  case 15:  RegExpStrRight = "/" +  "\\d\\d" + pick_symbol_divider + "\\d\\d" + "/g"; text_for_search = generateText( "колобок" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
-        	  case 16:  RegExpStrRight = "/" +  "src=\"[a-z.\s]+\"/gi"; text_for_search = generateText( "html img" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
+		  case 13:  RegExpStrRight = "/[a-z]+/g"; text_for_search = generateText( "слон и тигр" );  break; // 			
+		  case 14:  RegExpStrRight = "/[a-z]+ть?ся/g"; text_for_search = generateText( "ться" );  break; // 
+        	  case 15:  RegExpStrRight = "/\\b" +  symbol_1_eng + "[a-z]+" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "\\b/g"; text_for_search = generateText( "eng text" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
+        	  case 16:  RegExpStrRight = "/" +  "\\d\\d" + pick_symbol_divider + "\\d\\d" + "/g"; text_for_search = generateText( "колобок" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
+        	  case 17:  RegExpStrRight = "/" +  "src=\"[a-z.\s]+\"/gi"; text_for_search = generateText( "html img" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
 
 		  //  /м?яу+/g
 		  
