@@ -177,6 +177,7 @@ questions.push( "найти все глаголы, оканчивающиеся 
 questions.push( "найти все слова, начинающиеся на <b>" + symbol_1_eng + "</b> и заканчивающиеся на <b>" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "</b>" );
 questions.push( "найти все временные показатели вида <b>" + "09"+pick_symbol_divider+"23, 11"+pick_symbol_divider+"45, 23"+pick_symbol_divider+"01" + "</b> и т.д." );
 questions.push( "найти пути ко всем картинкам <b>" + "src=\"fish.png\", src=\"wrongname.gif\"</b> и т.д." );
+questions.push( "найти все почтовые адреса e-mail в тексте" );
 	
 	let content_tabs="";
 	content_tabs+="<ul>\n";
@@ -453,7 +454,19 @@ function generateText( mode ) {
 			text += "‹/html›";
 
 		break;	
-		
+
+       case "email": 
+	  
+			text += "<p>Грамоте учиться всегда пригодится.</p>";
+			text += "<p>Учиться-всегда пригодится.</p>";
+			text += "<p>Глаза боятся, а руки делают.</p>";
+			text += "<p>Не плюй в колодец, пригодится воды напиться.</p>";
+			text += "<p>Как шьется, так и носится.</p>";
+			text += "<p>Волков бояться – в лес не ходить.</p>";
+			text += "<p>Заботься о душе, а не о завтрашнем дне. Завтрашний день сам о себе позаботится.</p>";
+
+			break;				
+			
 	}
 	
 	
@@ -512,6 +525,7 @@ function activateUI( task_number ) {
         	  case 15:  RegExpStrRight = "/\\b" +  symbol_1_eng + "[a-z]+" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "\\b/g"; text_for_search = generateText( "eng text" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
         	  case 16:  RegExpStrRight = "/" +  "\\d\\d" + pick_symbol_divider + "\\d\\d" + "/g"; text_for_search = generateText( "колобок" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
         	  case 17:  RegExpStrRight = "/" +  "src=\"[a-z.\s]+\"/gi"; text_for_search = generateText( "html img" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
+        	  case 18:  RegExpStrRight = "/" +  "[a-z.0-9]+@[a-z]+.[a-z]+/gi"; text_for_search = generateText( "email" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
 
 		  //  /м?яу+/g
 		  
