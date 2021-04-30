@@ -461,9 +461,7 @@ function generateText( mode ) {
 			text += "<p>Кот Матроскин Matroskincat@mail.ru. И вышивать, и на машинке шить, и малиновое варенье варить, и составить финансовый план по выживанию ребенка с четвероногими питомцами в деревне.</p>";
 			text += "<p>Чебурашка Cheburashka@yandex.ru или Cheburashka@ya.ru. «Топл» на английском, «Плумпс» на немецком, «Дрюттэн» на шведском. Трогательная и некогда безымянная, игрушка обрела мировую славу после выхода мультфильма в 1969 году. Продолжение истории о мохнатом зверьке и его верном друге крокодиле сняли в Японии. А российская олимпийская сборная несколько раз делала Чебурашку своим символом.</p>";
 			text += "<p>Винни-Пух winnie@nfbgu.ru. Медведь — поэт, любитель меда и «посидеть еще немного»… В отличие от западного коллеги, добродушного и трогательного, советский — практик с элементами философии. Образ, созданный режиссером Федором Хитруком, счел неточным Борис Заходер — папа отечественного Пуха. Зато яркая картинка в стиле детского рисунка, хрипелки и сам забавный медведь пришлись по душе детям.</p>";
-			text += "<p>Как шьется, так и носится.</p>";
-			text += "<p>Волков бояться – в лес не ходить.</p>";
-			text += "<p>Заботься о душе, а не о завтрашнем дне. Завтрашний день сам о себе позаботится.</p>";
+			text += "<p>Маугли tarzan@bgu.ru. Герой первого «героического эпоса» «Союзмультфильма». В Японии внесен в список лучшего анимэ за всю историю мультипликации. Человеческий детеныш, сумевший укротить волчью стаю, тактически выиграть бой с армией собак и победить коварного тигра. Вот что значит расти на свежем воздухе, учиться у настоящего медведя и дружить с пантерой.</p>";
 
 			break;				
 			
@@ -520,8 +518,8 @@ function activateUI( task_number ) {
 		  case 10:  RegExpStrRight = "/" +  symbol_1_eng + symbol_2_eng + "\\b/g"; text_for_search = generateText( "eng text" );  break; // в конце   
 		  case 11:  RegExpStrRight = "/" +  arr_animals_sound[pick_index_animals_sound] + "+/g"; text_for_search = generateText( "мяу" );  break; // 
 		  case 12:  RegExpStrRight = "/" +  arr_animals_sound[pick_index_animals_sound] + "*/g"; text_for_search = generateText( "мяу" );  break; // 
-		  case 13:  RegExpStrRight = "/[а-яё]+/g"; text_for_search = generateText( "слон и тигр" );  break; // 			
-		  case 14:  RegExpStrRight = "/[а-яё]+ть?ся/g"; text_for_search = generateText( "ться" );  break; // 
+		  case 13:  RegExpStrRight = "/[а-яё]+/gi"; text_for_search = generateText( "слон и тигр" );  break; // 			
+		  case 14:  RegExpStrRight = "/[а-яё]+ть?ся/gi"; text_for_search = generateText( "ться" );  break; // 
         	  case 15:  RegExpStrRight = "/\\b" +  symbol_1_eng + "[a-z]+" + arr_symbols_heavy_eng[ (pick_index_symbol+1) % 12 ] + "\\b/g"; text_for_search = generateText( "eng text" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
         	  case 16:  RegExpStrRight = "/" +  "\\d\\d" + pick_symbol_divider + "\\d\\d" + "/g"; text_for_search = generateText( "колобок" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
         	  case 17:  RegExpStrRight = "/" +  "src=\"[a-z.\s]+\"/gi"; text_for_search = generateText( "html img" );  break; // начинается на symbol_1_eng и заканчивается на  symbol_4_eng 
